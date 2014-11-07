@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.avianey.com.viewpagerindicator</groupId>
+    <artifactId>library</artifactId>
+    <version>2.4.1-SNAPSHOT</version>
+	<name>Android-ViewPagerIndicator</name>
+	<packaging>aar</packaging>
+
+    <contributors>
+        <contributor>
+            <name>Antoine Vianey</name>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <url>http://avianey.github.com</url>
+        </contributor>
+    </contributors>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -9,159 +25,188 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.viewpagerindicator</groupId>
-    <artifactId>parent</artifactId>
-    <packaging>pom</packaging>
-    <version>2.4.1</version>
-
-    <name>Android-ViewPagerIndicator (Parent)</name>
-    <description>Android library for.</description>
-    <url>https://github.com/JakeWharton/Android-ViewPagerIndicator</url>
-    <inceptionYear>2011</inceptionYear>
-
-    <modules>
-        <module>library</module>
-        <module>sample</module>
-    </modules>
-
-    <scm>
-        <url>http://github.com/JakeWharton/Android-ViewPagerIndicator/</url>
-        <connection>scm:git:git://github.com/JakeWharton/Android-ViewPagerIndicator.git</connection>
-        <developerConnection>scm:git:git@github.com:JakeWharton/Android-ViewPagerIndicator.git</developerConnection>
-    </scm>
-
-    <developers>
-        <developer>
-            <name>Jake Wharton</name>
-            <email>jakewharton@gmail.com</email>
-            <id>jakewharton</id>
-            <url>http://jakewharton.com</url>
-            <timezone>-5</timezone>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </developer>
-    </developers>
-
     <licenses>
         <license>
-            <name>Apache License Version 2.0</name>
+            <name>The Apache Software License, Version 2.0</name>
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
-    <organization>
-        <name>Jake Wharton</name>
-        <url>http://jakewharton.com</url>
-    </organization>
-
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>https://github.com/JakeWharton/Android-ViewPagerIndicator/issues</url>
-    </issueManagement>
+    <scm>
+        <url>https://github.com/avianey/Android-ViewPagerIndicator</url>
+        <developerConnection>scm:git:git@github.com/avianey/Android-ViewPagerIndicator.git</developerConnection>
+        <connection>scm:git:git://github.com/avianey/Android-ViewPagerIndicator.git</connection>
+        <tag>HEAD</tag>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <java.version>1.6</java.version>
         <android.version>4.1.1.4</android.version>
-        <android.platform>16</android.platform>
+        <android.platform>21</android.platform>
         <android.support.version>r7</android.support.version>
-
-        <android-maven.version>3.3.0</android-maven.version>
+        <android-maven.version>4.0.0-rc.2</android-maven.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.google.android</groupId>
-                <artifactId>android</artifactId>
-                <version>${android.version}</version>
-            </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>${android.version}</version>
+        </dependency>
 
-            <dependency>
-                <groupId>com.google.android</groupId>
-                <artifactId>support-v4</artifactId>
-                <version>${android.support.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>support-v4</artifactId>
+            <version>${android.support.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
+
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.4.2</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                    <artifactId>android-maven-plugin</artifactId>
-                    <version>${android-maven.version}</version>
-                    <configuration>
-                        <sdk>
-                            <platform>${android.platform}</platform>
-                        </sdk>
-                        <undeployBeforeDeploy>true</undeployBeforeDeploy>
-                    </configuration>
-                    <extensions>true</extensions>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>2.6</version>
-                    <configuration>
-                        <failsOnError>true</failsOnError>
+                        <mavenExecutorId>forked-path</mavenExecutorId>
+                        <useReleaseProfile>false</useReleaseProfile>
+                        <arguments>-Psonatype-oss-release</arguments>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.1</version>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>${android-maven.version}</version>
                 <configuration>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <sdk>
+                        <platform>${android.platform}</platform>
+                    </sdk>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
+                <extensions>true</extensions>
             </plugin>
 
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/${artifactId}-${version}.jar</file>
+                                    <type>jar</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
                 <configuration>
-                    <excludes>
-                        <exclude>android:android</exclude>
-                        <exclude>com.google.android.maps:maps</exclude>
-                    </excludes>
-                    <buildOutputDirectory>bin</buildOutputDirectory>
-                    <classpathContainers>
-                        <classpathContainer>com.android.ide.eclipse.adt.ANDROID_FRAMEWORK</classpathContainer>
-                    </classpathContainers>
-                    <additionalProjectnatures>
-                        <projectnature>com.android.ide.eclipse.adt.AndroidNature</projectnature>
-                        <projectnature>org.eclipse.ajdt.ui.ajnature</projectnature>
-                    </additionalProjectnatures>
-                    <buildcommands>
-                        <buildcommand>com.android.ide.eclipse.adt.ResourceManagerBuilder</buildcommand>
-                        <buildcommand>com.android.ide.eclipse.adt.PreCompilerBuilder</buildcommand>
-                        <buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
-                        <buildcommand>com.android.ide.eclipse.adt.ApkBuilder</buildcommand>
-                    </buildcommands>
-                    <useProjectReferences>false</useProjectReferences>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <pushChanges>false</pushChanges>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <!--
+    mvn clean release:clean -s settings.xml
+    mvn release:prepare -s settings.xml
+    manual push
+    mvn release:perform -s settings.xml
+    -->
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <repository>
+                    <id>sonatype-nexus-staging</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+
 </project>
