@@ -44,7 +44,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <android.version>4.1.1.4</android.version>
-        <android.platform>21</android.platform>
+        <android.platform>23</android.platform>
         <android.support.version>r7</android.support.version>
         <android-maven.version>4.0.0-rc.2</android-maven.version>
     </properties>
@@ -89,6 +89,7 @@
                 <configuration>
                     <sdk>
                         <platform>${android.platform}</platform>
+                        <path>/home/avianey/Android/Sdk</path>
                     </sdk>
                     <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
